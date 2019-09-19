@@ -1,0 +1,31 @@
+Shop.java is a very simple program that helps a store index all its available movies and games, and calculates the rental price for each product.
+
+
+Step 1: Code review
+Create a new empty project and place in it Shop.java
+Look how the program Shop.java works: Run as Java application.
+Test all functionality, briefly describe your own input and output on paper, this will be reused after refactoring to see if there are no errors crept in!
+Have principles been violated, write down: what and why?
+Step 2: Refactor
+Even without any additional requirements, you can immediately see that this program was flanked without too much thought. It's up to you to make sure that the basic program gets a better OO build up. Refine the existing code:
+
+start with a detailed class diagram - be sure to think about it:
+Structure of the project: which packages, why?
+inheritance, abstract classes, polymorphism, ... (OOP)
+only then work out in code - certainly think about this:
+TIP: do this in a new project, and not in the existing one!
+exceptions
+Testing (repeat your "user-test" from the beginning!)
+
+Step 3: add functionality
+Now extend the existing code, (work in order, test each question and make sure it works before you start the next one):
+
+The store decides to rent out CDs as well, this should also be possible with the program. (cost: 1.5€/day)
+I want to be able to request a list of all the products in the shop, sorted as follows: first the movies, then the games, then the CDs. The list shows the category, id and description of the products.
+I want the IDs of new products to be calculated automatically (new ID is 1 higher than the highest ID in the product list).
+I want to be able to use the program to enter that an available product is now being loaned.
+I want to be able to see whether a product is available or loaned by entering its ID
+When I close my program, I want all products to be written to a file (shop.txt).
+I want all items to be read from a file (shop.txt) at the start of my program.
+
+Translated with www.DeepL.com/Translator
