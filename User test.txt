@@ -1,0 +1,25 @@
+User-test:
+
+Main menu:
+Input 				Result
+something that is not 0-3	Unhandled exception
+0				Program closes
+1				Add product window - "Enter the title"
+2				Show product window - "Enter the id"
+3				Show rental price window - "Enter the id"
+
+Add product window:
+Input				Result
+Nothing & click OK		"Enter the id window" - BAD
+Click 'cancel'			"Enter the id window" - BAD
+Title				"Enter the id window"
+
+Enter the type (M/G) window:
+Input				Result
+Not M/G				No error - BAD
+
+
+!When your input is not M/G, a product is still added but an exception is thrown when you search for it by ID
+
+
+
