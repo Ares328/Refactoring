@@ -12,8 +12,7 @@ public class Shop implements RentManager {
     public String showAllProducts(){
         String uit = "";
         for (Product p: this.products){
-            if (p instanceof Movie) uit += p.toString() + "\n";
-
+            uit += p.toString() + "\n";
         }
         return uit;
     }
