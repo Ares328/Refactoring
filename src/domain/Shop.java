@@ -7,7 +7,15 @@ import java.util.ArrayList;
 public class Shop implements RentManager {
     private ArrayList<Product> products = new ArrayList<>();
 
-
+    public boolean isLoaned(int id){
+        boolean loaned = false;
+        for (Product p: this.products){
+            if (p.getId() == id){
+                loaned =  p.getIsLoaned();
+            }
+        }
+        return loaned;
+    }
 
     public String showAllProducts(){
         String uit = "";

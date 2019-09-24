@@ -11,7 +11,9 @@ public abstract class Product {
         setIsLoaned(l);
     }
 
+
     public abstract double getPrice(int days);
+
 
     public int getId() {
         return id;
@@ -39,8 +41,8 @@ public abstract class Product {
 
     @Override
     public String toString() {
-        return "id=" + id +
-                ", title='" + title + '\'' +
-                ", isLoaned=" + isLoaned;
+        return id +
+                "," + title +
+                "," + isLoaned;
     }
 }

@@ -12,6 +12,6 @@ public class CD extends Product {
 
     @Override
     public String toString() {
-        return "CD{" + super.toString() + "}";
+        return "CD," + super.toString();
     }
 }

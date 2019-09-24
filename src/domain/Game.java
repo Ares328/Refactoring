@@ -12,6 +12,6 @@ public class Game extends Product {
 
     @Override
     public String toString() {
-        return "Game{" + super.toString() + "}";
+        return "Game," + super.toString();
     }
 }
