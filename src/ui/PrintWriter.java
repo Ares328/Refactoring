@@ -10,15 +10,15 @@ public class PrintWriter {
     public void loadProductsFromFile(Shop shop) {
         File shoptxt = new File("shop.txt");
         try {
-            Scanner scannerFile = new Scanner(shoptxt);  		// scanner for File
-            while (scannerFile.hasNextLine()) {  				// each line of file
-                Scanner scannerline = new Scanner(scannerFile.nextLine());  	// scanner for line
-                scannerline.useDelimiter(",");  				// seperated by "/"
+            Scanner scannerFile = new Scanner(shoptxt);
+            while (scannerFile.hasNextLine()) {
+                Scanner scannerline = new Scanner(scannerFile.nextLine());
+                scannerline.useDelimiter(",");
                 String ProductType = scannerline.next();
-                String idS = scannerline.next();		// first line (id) till "/"
+                String idS = scannerline.next();
                 int id = Integer.parseInt(idS);
-                String title = scannerline.next(); 				// second line (title) till "/"
-                String isLoanedS = scannerline.next();           //third line (isLoaned) till "/"
+                String title = scannerline.next();
+                String isLoanedS = scannerline.next();
                 boolean isLoaned = Boolean.parseBoolean(isLoanedS);
 
                 //This is really crappy cause I don't know how to do it, heeeelppp haha :)

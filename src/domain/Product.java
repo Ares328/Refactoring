@@ -11,9 +11,7 @@ public abstract class Product {
         setIsLoaned(l);
     }
 
-
     public abstract double getPrice(int days);
-
 
     public int getId() {
         return id;

@@ -8,10 +8,8 @@ public class ShopUI {
     public static void main(String[] args) {
         Shop shop = new Shop();
         PrintWriter printWriter = new PrintWriter();
-
         printWriter.loadProductsFromFile(shop);
 
-        
 
         String menu = "1. Add product\n2. Show product\n3. Show rental price\n\n0. Program closes";
         String choiceS = JOptionPane.showInputDialog(menu);
@@ -33,6 +31,7 @@ public class ShopUI {
             default:
                 throw new IllegalArgumentException("Wrong input");
         }
+
 
         System.out.println(shop.showAllProducts());
         printWriter.saveProductsToFile(shop);

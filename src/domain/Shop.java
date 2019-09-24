@@ -17,6 +17,14 @@ public class Shop implements RentManager {
         return loaned;
     }
 
+    public void setLoaned(int id){
+        for (Product p: this.products){
+            if (p.getId() == id){
+                p.setIsLoaned(true);
+            }
+        }
+    }
+
     public String showAllProducts(){
         String uit = "";
         for (Product p: this.products){
