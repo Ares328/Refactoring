@@ -22,10 +22,10 @@ public class ShopUI {
                     addProduct();
                     break;
                 case 2:
-                    System.out.println("Show Product");
+                    showProduct();
                     break;
                 case 3:
-                    System.out.println("Show rental price");
+                    showRentalPrice();
                     break;
                 default:
                     //TODO: message about wrong input
@@ -54,5 +54,32 @@ public class ShopUI {
 
         //TODO: select a class
         shop.addProduct(new Game(Integer.parseInt(id),title,false));
+    }
+
+    public void showProduct(){
+        Product product = findProduct();
+        if (product == null) {
+            JOptionPane.showMessageDialog(null, "Product with id " + product.getId() + " not found");
+        }
+        else JOptionPane.showMessageDialog(null, product.getTitle());
+    }
+
+    public void showRentalPrice(){
+        Product product = findProduct();
+        if (product != null){
+            int days = Integer.parseInt(JOptionPane.showInputDialog("Enter the number of days:"));
+            JOptionPane.showMessageDialog(null, product.getPrice(days));
+        } else JOptionPane.showMessageDialog(null, "Product with id " + product.getId() + " not found");
+
+    }
+
+    public Product findProduct(){
+        int id = Integer.parseInt(JOptionPane.showInputDialog("Enter the id:"));
+        for (Product product: shop.getProducts()){
+            if (product.getId() == id) {
+                return product;
+            }
+        }
+        return null;
     }
 }
