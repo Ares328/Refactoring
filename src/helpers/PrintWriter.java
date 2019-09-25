@@ -1,12 +1,13 @@
-package ui;
+package helpers;
 
 import domain.*;
 
 import java.io.*;
 import java.util.Scanner;
 
-public class PrintWriter {
+public class PrintWriter implements IDataManager {
 
+    @Override
     public void loadProductsFromFile(Shop shop) {
         File shoptxt = new File("shop.txt");
         try {
@@ -39,6 +40,7 @@ public class PrintWriter {
         }
     }
 
+    @Override
     public void saveProductsToFile(Shop shop) {
         File shoptxt =new File("shop.txt");
         try {

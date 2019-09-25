@@ -1,11 +1,19 @@
 package domain;
 
-import helpers.RentManager;
+import helpers.*;
 
 import java.util.ArrayList;
 
-public class Shop implements RentManager {
+public class Shop {
     private ArrayList<Product> products = new ArrayList<>();
+
+    public ArrayList<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(ArrayList<Product> products){
+        this.products = products;
+    }
 
     public boolean isLoaned(int id){
         boolean loaned = false;
@@ -37,14 +45,14 @@ public class Shop implements RentManager {
         this.products.add(product);
     }
 
-    @Override
-    public double calculatePrice(int id, int days) {
-        double cost = 0.0;
-        for (Product p : this.products){
-            if (p.getId() == id){
-                cost = p.getPrice(days);
-            }
-        }
-        return cost;
-    }
+//    @Override
+//    public double calculatePrice(int id, int days) {
+//        double cost = 0.0;
+//        for (Product p : this.products){
+//            if (p.getId() == id){
+//                cost = p.getPrice(days);
+//            }
+//        }
+//        return cost;
+//    }
 }

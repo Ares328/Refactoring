@@ -1,6 +1,8 @@
 package domain;
 
-public abstract class Product {
+import java.io.Serializable;
+
+public abstract class Product implements Serializable {
     private int id;
     private String title;
     private boolean isLoaned;
