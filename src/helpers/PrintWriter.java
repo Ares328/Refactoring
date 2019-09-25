@@ -24,13 +24,13 @@ public class PrintWriter implements IDataManager {
 
                 //This is really crappy cause I don't know how to do it, heeeelppp haha :)
                 if(ProductType.equals("Game")){
-                    Product product = new Game(id,title,isLoaned);
+                    Product product = new Game(title);
                     shop.addProduct(product);
                 }else if(ProductType.equals("Movie")){
-                    Product product = new Movie(id,title,isLoaned);
+                    Product product = new Movie(title);
                     shop.addProduct(product);
                 }else{
-                    Product product = new CD(id,title,isLoaned);
+                    Product product = new CD(title);
                     shop.addProduct(product);
                 }
                 //till here

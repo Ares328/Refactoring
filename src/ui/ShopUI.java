@@ -1,8 +1,13 @@
 package ui;
 
 import domain.*;
+import javafx.collections.transformation.SortedList;
 
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class ShopUI {
 
@@ -13,10 +18,20 @@ public class ShopUI {
     }
 
     public void showMenu(){
-        String menu = "1. Add product\n2. Show product\n3. Show rental price\n\n0. Program closes";
-        int choice = -1;
-        while(choice!=0) {
-            choice = Integer.parseInt(JOptionPane.showInputDialog(menu));
+        String menu = "1. Add product\n2. Show product\n3. Show rental price\n4. Show all products\n5. Rent product\n6.See availability\n\n0. Program closes";
+        String input;
+        int choice;
+        do{
+            choice=-1;
+            input = (JOptionPane.showInputDialog(menu));
+            if (input == null)
+                return;
+            try {
+                choice = Integer.parseInt(input);
+            } catch (NumberFormatException e){
+                JOptionPane.showMessageDialog(null, "Please insert a valid option number!");
+                continue;
+            }
             switch (choice) {
                 case 1:
                     addProduct();
@@ -27,33 +42,47 @@ public class ShopUI {
                 case 3:
                     showRentalPrice();
                     break;
+                case 4:
+                    showAllProducts();
+                    break;
+                case 5:
+                    rentProduct();
+                    break;
+                case 6:
+                    seeAvailability();
+                    break;
+                case 0:
+                    return;
                 default:
-                    //TODO: message about wrong input
+                    JOptionPane.showMessageDialog(null, "Please choose an option from the list!!");
             }
-        }
-        return;
+        } while(choice!=0);
+
     }
 
     public void addProduct() {
         String title = JOptionPane.showInputDialog("Enter the title:");
         if (title.isEmpty()){
-            //TODO: show error message
-            return;
-        }
-        String id = JOptionPane.showInputDialog("Enter the id:");
-        if (id.isEmpty()){
-            //TODO: show error message
-            return;
-        }
-        //TODO: select from list
-        String type = JOptionPane.showInputDialog("Enter the type (M for movie/G for game):");
-        if (type.isEmpty()){
-            //TODO: show error message
+            JOptionPane.showMessageDialog(null, "The title cannot be empty!");
             return;
         }
 
-        //TODO: select a class
-        shop.addProduct(new Game(Integer.parseInt(id),title,false));
+        String[] choices = { "CD","Game","Movie" };
+        String input = (String) JOptionPane.showInputDialog(null, "Select the type:",
+                "", JOptionPane.QUESTION_MESSAGE, null, choices, choices[0]);
+
+        switch(input){
+            case "CD":
+                shop.addProduct(new CD(title));
+                break;
+            case "Game":
+                shop.addProduct(new Game(title));
+                break;
+            case("Movie"):
+                shop.addProduct(new Movie(title));
+                break;
+        }
+
     }
 
     public void showProduct(){
@@ -81,5 +110,43 @@ public class ShopUI {
             }
         }
         return null;
+    }
+
+    public void showAllProducts(){
+
+        String list="";
+        int count=0;
+        Collections.sort(shop.getProducts(),Collections.reverseOrder(
+                Comparator.comparing(o -> o.getClass().getName())));
+
+        for (Product product: shop.getProducts()) {
+            list += ++count + ". Category: " + product.getClass().getSimpleName() + " Id: " +
+                    product.getId() + " Title: " + product.getTitle() + "\n";
+        }
+        JOptionPane.showMessageDialog(null, list);
+    }
+
+    public void rentProduct(){
+        ArrayList<String> descriptions= new ArrayList<>();
+        ArrayList<Product> availableProducts = new ArrayList<>();
+
+        for (Product product: shop.getProducts()) {
+            if (product.getIsLoaned())
+                continue;
+            availableProducts.add(product);
+            descriptions.add("Title: " + product.getTitle() + " ID: " + product.getId() );
+        }
+
+        Product input = (Product)JOptionPane.showInputDialog(null, "Select the product:",
+                "", JOptionPane.QUESTION_MESSAGE, null, availableProducts.toArray(), availableProducts.toArray()[0]);
+
+        if(input!=null)
+            input.setIsLoaned(true);
+    }
+
+    public void seeAvailability(){
+        if(findProduct().getIsLoaned())
+            JOptionPane.showMessageDialog(null, "Product is loaned");
+        else JOptionPane.showMessageDialog(null, "Product is available");
     }
 }

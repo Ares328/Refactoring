@@ -1,8 +1,8 @@
 package domain;
 
 public class CD extends Product {
-    public CD(int i, String t, boolean l) {
-        super(i, t, l);
+    public CD(String title) {
+        super(title);
     }
 
     @Override
@@ -12,6 +12,6 @@ public class CD extends Product {
 
     @Override
     public String toString() {
-        return "CD," + super.toString();
+        return "CD: " + super.toString();
     }
 }

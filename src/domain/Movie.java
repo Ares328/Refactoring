@@ -1,8 +1,8 @@
 package domain;
 
 public class Movie extends Product {
-    public Movie(int i, String t, boolean l) {
-        super(i, t, l);
+    public Movie(String title) {
+        super(title);
     }
 
     @Override
@@ -17,6 +17,6 @@ public class Movie extends Product {
 
     @Override
     public String toString() {
-        return "Movie," + super.toString();
+        return "Movie: " + super.toString();
     }
 }

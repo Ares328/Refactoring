@@ -3,14 +3,15 @@ package domain;
 import java.io.Serializable;
 
 public abstract class Product implements Serializable {
+    private static int COUNT;
     private int id;
     private String title;
     private boolean isLoaned;
 
-    public Product(int i,String t,boolean l){
-        setId(i);
-        setTitle(t);
-        setIsLoaned(l);
+    public Product(String title){
+        id = ++COUNT;
+        isLoaned = false;
+        setTitle(title);
     }
 
     public abstract double getPrice(int days);
@@ -19,9 +20,6 @@ public abstract class Product implements Serializable {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;
@@ -41,8 +39,8 @@ public abstract class Product implements Serializable {
 
     @Override
     public String toString() {
-        return id +
-                "," + title +
-                "," + isLoaned;
+        return "ID: "+ id +
+                ", Title: " + title +
+                " , Loaned: " + isLoaned;
     }
 }
