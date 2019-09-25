@@ -1,12 +1,13 @@
-package ui;
+package helpers;
 
 import domain.*;
 
 import java.io.*;
 import java.util.Scanner;
 
-public class PrintWriter {
+public class PrintWriter implements IDataManager {
 
+    @Override
     public void loadProductsFromFile(Shop shop) {
         File shoptxt = new File("shop.txt");
         try {
@@ -23,13 +24,13 @@ public class PrintWriter {
 
                 //This is really crappy cause I don't know how to do it, heeeelppp haha :)
                 if(ProductType.equals("Game")){
-                    Product product = new Game(id,title,isLoaned);
+                    Product product = new Game(title);
                     shop.addProduct(product);
                 }else if(ProductType.equals("Movie")){
-                    Product product = new Movie(id,title,isLoaned);
+                    Product product = new Movie(title);
                     shop.addProduct(product);
                 }else{
-                    Product product = new CD(id,title,isLoaned);
+                    Product product = new CD(title);
                     shop.addProduct(product);
                 }
                 //till here
@@ -39,6 +40,7 @@ public class PrintWriter {
         }
     }
 
+    @Override
     public void saveProductsToFile(Shop shop) {
         File shoptxt =new File("shop.txt");
         try {
