@@ -1,7 +1,5 @@
 package domain;
 
-import helpers.*;
-
 import java.util.ArrayList;
 
 public class Shop {
@@ -44,15 +42,5 @@ public class Shop {
     public void addProduct(Product product){
         this.products.add(product);
     }
-
-//    @Override
-//    public double calculatePrice(int id, int days) {
-//        double cost = 0.0;
-//        for (Product p : this.products){
-//            if (p.getId() == id){
-//                cost = p.getPrice(days);
-//            }
-//        }
-//        return cost;
-//    }
+    
 }

@@ -18,11 +18,10 @@ public class Serializer implements IDataManager {
     public void loadProductsFromFile(Shop shop) {
         try
         {
-            ArrayList<Product> products= new ArrayList<>();
             FileInputStream file = new FileInputStream(fileName);
             ObjectInputStream in = new ObjectInputStream(file);
 
-            products = (ArrayList<Product>) in.readObject();
+            ArrayList<Product> products = (ArrayList<Product>) in.readObject();
 
             in.close();
             file.close();
