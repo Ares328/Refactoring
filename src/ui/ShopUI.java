@@ -138,6 +138,11 @@ public class ShopUI {
             descriptions.add("Title: " + product.getTitle() + " ID: " + product.getId() );
         }
 
+        if (availableProducts.isEmpty()){
+            JOptionPane.showMessageDialog(null, "There are no available products for renting");
+            return;
+        }
+
         Product input = (Product)JOptionPane.showInputDialog(null, "Select the product:",
                 "", JOptionPane.QUESTION_MESSAGE, null, availableProducts.toArray(), availableProducts.toArray()[0]);
 
@@ -146,7 +151,10 @@ public class ShopUI {
     }
 
     public void seeAvailability(){
-        if(findProduct().getIsLoaned())
+        Product product = findProduct();
+        if (product==null)
+            JOptionPane.showMessageDialog(null, "There is no product with provided id!");
+        else if(product.getIsLoaned())
             JOptionPane.showMessageDialog(null, "Product is loaned");
         else JOptionPane.showMessageDialog(null, "Product is available");
     }
