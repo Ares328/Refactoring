@@ -18,7 +18,8 @@ public class ShopUI {
     }
 
     public void showMenu(){
-        String menu = "1. Add product\n2. Show product\n3. Show rental price\n4. Show all products\n5. Rent product\n6.See availability\n\n0. Program closes";
+        String menu = "1. Add product\n2. Show product\n3. Show rental price\n" +
+                "4. Show all products\n5. Rent product\n6.See availability\n\n0. Program closes";
         String input;
         int choice;
         do{

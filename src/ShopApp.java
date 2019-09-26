@@ -12,6 +12,5 @@ public class ShopApp {
         shopUI.showMenu();
 
         dataManager.saveProductsToFile(shop);
-
     }
 }
