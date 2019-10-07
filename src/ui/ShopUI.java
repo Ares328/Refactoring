@@ -104,7 +104,13 @@ public class ShopUI {
     }
 
     public Product findProduct(){
-        int id = Integer.parseInt(JOptionPane.showInputDialog("Enter the id:"));
+        int id;
+        try {
+            id = Integer.parseInt(JOptionPane.showInputDialog("Enter the id:"));
+        } catch (NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Please insert a valid option number!");
+            return null;
+        }
         for (Product product: shop.getProducts()){
             if (product.getId() == id) {
                 return product;
@@ -132,7 +138,7 @@ public class ShopUI {
         ArrayList<Product> availableProducts = new ArrayList<>();
 
         for (Product product: shop.getProducts()) {
-            if (product.getIsLoaned())
+            if (product.getCurrentState().getClass() != LendableState.class)
                 continue;
             availableProducts.add(product);
             descriptions.add("Title: " + product.getTitle() + " ID: " + product.getId() );
@@ -147,14 +153,14 @@ public class ShopUI {
                 "", JOptionPane.QUESTION_MESSAGE, null, availableProducts.toArray(), availableProducts.toArray()[0]);
 
         if(input!=null)
-            input.setIsLoaned(true);
+            input.loan(false);
     }
 
     public void seeAvailability(){
         Product product = findProduct();
         if (product==null)
             JOptionPane.showMessageDialog(null, "There is no product with provided id!");
-        else if(product.getIsLoaned())
+        else if(product.getCurrentState().getClass() == LoanedState.class)
             JOptionPane.showMessageDialog(null, "Product is loaned");
         else JOptionPane.showMessageDialog(null, "Product is available");
     }

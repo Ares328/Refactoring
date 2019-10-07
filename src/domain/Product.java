@@ -6,20 +6,23 @@ public abstract class Product implements Serializable {
     private static int COUNT;
     private int id;
     private String title;
-    private boolean isLoaned;
+    private IRequestState currentState;
 
     public Product(String title){
         id = ++COUNT;
-        isLoaned = false;
         setTitle(title);
+        currentState = new LendableState();
     }
 
     public abstract double getPrice(int days);
 
+    public void setCurrentState(IRequestState state){ currentState = state;}
+
+    public IRequestState getCurrentState(){return currentState;}
+
     public int getId() {
         return id;
     }
-
 
     public String getTitle() {
         return title;
@@ -29,18 +32,26 @@ public abstract class Product implements Serializable {
         this.title = title;
     }
 
-    public boolean getIsLoaned() {
-        return isLoaned;
+    public void remove(){
+        currentState.remove(this);
     }
 
-    public void setIsLoaned(boolean loaned) {
-        isLoaned = loaned;
+    public void reinstate(){
+        currentState.reinstate(this);
+    }
+
+    public void loan(boolean isDamaged){
+        currentState.loan(this,isDamaged);
+    }
+
+    public void repair(){
+        currentState.repair(this);
     }
 
     @Override
     public String toString() {
         return "ID: "+ id +
                 ", Title: " + title +
-                " , Loaned: " + isLoaned;
+                " , State: " + currentState.getClass().getSimpleName();
     }
 }
