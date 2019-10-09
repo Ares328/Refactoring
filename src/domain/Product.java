@@ -36,12 +36,12 @@ public abstract class Product implements Serializable {
         currentState.remove(this);
     }
 
-    public void reinstate(){
-        currentState.reinstate(this);
+    public void reinstate(boolean isDamaged){
+        currentState.reinstate(this,isDamaged);
     }
 
-    public void loan(boolean isDamaged){
-        currentState.loan(this,isDamaged);
+    public void loan(){
+        currentState.loan(this);
     }
 
     public void repair(){

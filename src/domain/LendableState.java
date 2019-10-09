@@ -3,21 +3,19 @@ package domain;
 import java.io.Serializable;
 
 public class LendableState implements IRequestState, Serializable {
-
+    // lendable goes to removed and loaned
     @Override
     public void remove(Product product) {
-
+        product.setCurrentState(new RemovedState());
     }
 
     @Override
-    public void loan(Product product, boolean isDamaged) {
-        if(!isDamaged)
-            product.setCurrentState(new LoanedState());
-        //TODO: else if damaged (error message?)
+    public void loan(Product product) {
+        product.setCurrentState(new LoanedState());
     }
 
     @Override
-    public void reinstate(Product product) {
+    public void reinstate(Product product, boolean isDamaged) {
 
     }
 

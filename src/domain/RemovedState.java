@@ -3,19 +3,19 @@ package domain;
 import java.io.Serializable;
 
 public class RemovedState implements IRequestState, Serializable {
-
+    // products don't leave this state
     @Override
     public void remove(Product product) {
 
     }
 
     @Override
-    public void loan(Product product, boolean isDamaged) {
+    public void loan(Product product) {
 
     }
 
     @Override
-    public void reinstate(Product product) {
+    public void reinstate(Product product, boolean isDamaged) {
 
     }
 
