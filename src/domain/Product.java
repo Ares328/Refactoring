@@ -1,12 +1,14 @@
 package domain;
 
+import exceptions.OperationNotAvailable;
+
 import java.io.Serializable;
 
 public abstract class Product implements Serializable {
     private static int COUNT;
     private int id;
     private String title;
-    private IRequestState currentState;
+    private RequestState currentState;
 
     public Product(String title){
         id = ++COUNT;
@@ -16,9 +18,9 @@ public abstract class Product implements Serializable {
 
     public abstract double getPrice(int days);
 
-    public void setCurrentState(IRequestState state){ currentState = state;}
+    public void setCurrentState(RequestState state){ currentState = state;}
 
-    public IRequestState getCurrentState(){return currentState;}
+    public RequestState getCurrentState(){return currentState;}
 
     public int getId() {
         return id;
@@ -32,19 +34,19 @@ public abstract class Product implements Serializable {
         this.title = title;
     }
 
-    public void remove(){
+    public void remove() throws OperationNotAvailable {
         currentState.remove(this);
     }
 
-    public void reinstate(boolean isDamaged){
+    public void reinstate(boolean isDamaged) throws OperationNotAvailable {
         currentState.reinstate(this,isDamaged);
     }
 
-    public void loan(){
+    public void loan() throws OperationNotAvailable {
         currentState.loan(this);
     }
 
-    public void repair(){
+    public void repair() throws OperationNotAvailable {
         currentState.repair(this);
     }
 

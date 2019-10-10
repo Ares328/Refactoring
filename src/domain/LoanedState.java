@@ -2,19 +2,9 @@ package domain;
 
 import java.io.Serializable;
 
-public class LoanedState implements IRequestState, Serializable {
+public class LoanedState extends RequestState implements Serializable {
 
     //loaned goes to damaged and lendable
-    @Override
-    public void remove(Product product) {
-
-    }
-
-    @Override
-    public void loan(Product product) {
-
-    }
-
     @Override
     public void reinstate(Product product, boolean isDamaged) {
         if(isDamaged){
@@ -22,10 +12,5 @@ public class LoanedState implements IRequestState, Serializable {
         }else{
             product.setCurrentState(new LendableState());
         }
-    }
-
-    @Override
-    public void repair(Product product) {
-
     }
 }

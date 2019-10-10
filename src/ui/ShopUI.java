@@ -1,6 +1,7 @@
 package ui;
 
 import domain.*;
+import exceptions.OperationNotAvailable;
 import javafx.collections.transformation.SortedList;
 
 import javax.swing.*;
@@ -152,8 +153,13 @@ public class ShopUI {
         Product input = (Product)JOptionPane.showInputDialog(null, "Select the product:",
                 "", JOptionPane.QUESTION_MESSAGE, null, availableProducts.toArray(), availableProducts.toArray()[0]);
 
-        if(input!=null)
-            input.loan(false);
+        if(input!=null) {
+            try {
+                input.loan();
+            } catch (OperationNotAvailable operationNotAvailable) {
+                //TODO: create dialog;
+            }
+        }
     }
 
     public void seeAvailability(){
